@@ -834,3 +834,26 @@ function buildGuideContent(){
     const badge = document.getElementById('wishlist-count');
     if (wishlist.length > 0 && badge){ badge.style.display = 'flex'; badge.innerText = wishlist.length; }
 })();
+/* =================== تفعيل قائمة البراندات بالضغط للموبايل =================== */
+document.addEventListener('DOMContentLoaded', () => {
+    const dropBtn = document.querySelector('.dropbtn');
+    const dropContent = document.getElementById('nav-dropdown');
+    
+    if (dropBtn && dropContent) {
+        dropBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation(); // يمنع قفل القائمة فوراً
+            dropContent.style.display = dropContent.style.display === 'block' ? 'none' : 'block';
+        });
+
+        // قفل القائمة لو اليوزر داس في أي مكان تاني في الشاشة
+        document.addEventListener('click', () => {
+            dropContent.style.display = 'none';
+        });
+
+        // منع قفل القائمة لما اليوزر يدوس جوة القائمة نفسها
+        dropContent.addEventListener('click', (e) => {
+            e.stopPropagation();
+        });
+    }
+});

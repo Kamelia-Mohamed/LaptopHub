@@ -484,26 +484,47 @@ footer b{ color:#fff; }
 .dropdown-content.show { display: block; }
 
 @media (max-width: 980px){
-  /* 1. إصلاح الناف بار (السماح للعناصر بالنزول لسطر جديد بشكل منظم) */
-  header { padding: 12px 16px; flex-wrap: wrap; }
-  .logo { font-size: 18px; }
-  .logo .logo-mark { width: 24px; height: 24px; font-size: 13px; }
-  .header-actions { margin-left: auto; } /* الحفاظ على الأزرار في اليمين */
-  
-  /* جعل شريط البحث والروابط يأخذون سطر كامل أسفل اللوجو */
-  .search-bar { order: 3; flex: 1 1 100%; max-width: 100%; margin-top: 12px; }
-  .nav-links { order: 4; width: 100%; display: flex; overflow-x: auto; margin-top: 10px; padding-bottom: 5px; justify-content: flex-start; }
-  .nav-links a, .dropbtn, .guide-btn { padding: 8px 12px; font-size: 13.5px; }
-  
+  /* 1. إصلاح الناف بار (إعطاء كل عنصر سطر مستقل) */
+  header {
+    padding: 12px 16px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .logo { order: 1; }
+  .header-actions { order: 2; margin-left: auto; }
+  .search-bar {
+    order: 3;
+    flex: 0 0 100%; /* إجبار السيرش ياخد السطر التاني بالكامل */
+    margin-top: 12px;
+    max-width: 100%;
+  }
+  .nav-links {
+    order: 4;
+    flex: 0 0 100%; /* إجبار اللينكات تاخد السطر التالت بالكامل */
+    margin-top: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  /* 2. تظبيط قائمة البراندات لتفتح داخل الشاشة */
+  .dropdown-content {
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90vw;
+    max-height: 250px;
+  }
+
+  /* أساسيات الموبايل */
   .hero { padding: 36px 20px 28px; }
   .store-container { padding: 20px 18px 90px; flex-direction: column; }
-  
   .mobile-filter-btn {
-    display: flex; align-items: center; gap: 8px;
+    display: flex; align-items: center; justify-content: center; gap: 8px;
     background: var(--surface); border: 1.5px solid var(--border); padding: 11px 16px;
-    border-radius: 11px; font-weight: 700; cursor: pointer; margin-bottom: 16px; width: 100%; justify-content: center;
+    border-radius: 11px; font-weight: 700; cursor: pointer; margin-bottom: 16px; width: 100%;
   }
-  
   .sidebar-filters {
     position: fixed; top: 0; left: -100%; height: 100vh; width: 82%; max-width: 320px;
     z-index: 500; border-radius: 0; transition: left .3s; max-height: 100vh;
@@ -515,30 +536,26 @@ footer b{ color:#fff; }
   .details-layout { flex-direction: column; }
   .container { padding: 0 18px; }
 
-  /* 2. إصلاح جدول المقارنة (إجباره على التمرير الأفقي ومنع ضغط النص) */
-  .comparison-table-wrapper { 
-    overflow-x: auto; 
-    -webkit-overflow-scrolling: touch; 
-    display: block;
-    width: 100%;
+  /* 3. إصلاح جدول المقارنة الجذري */
+  .comparison-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
   }
-  .compare-table { 
-    min-width: 650px; /* إجبار الجدول يكون أعرض من الشاشة عشان يعمل سكرول */
+  .compare-table {
+    width: max-content; /* السر هنا: بيمنع ضغط الجدول ويشغل السكرول الأفقي بنعومة */
+    border-collapse: collapse;
   }
-  .compare-table th, .compare-table td { 
-    min-width: 160px; /* مساحة كافية للنص عشان ميظهرش فوق بعضه */
-    padding: 12px; 
-    font-size: 12.5px;
-    white-space: normal;
-    vertical-align: top;
+  .compare-table th, .compare-table td {
+    min-width: 170px; /* مساحة واسعة للنص عشان ميتضغطش */
+    max-width: 220px;
+    background: #ffffff; /* إخفاء النص اللي بيعدي ورا العمود الثابت */
   }
-  /* تثبيت العمود الأول أثناء التمرير */
-  .compare-table td:first-child, .compare-table th:first-child { 
-    position: sticky; 
-    left: 0; 
-    background: var(--surface-alt);
+  .compare-table td:first-child, .compare-table th:first-child {
+    position: sticky;
+    left: 0;
     z-index: 2;
-    min-width: 100px;
+    background: var(--surface-alt);
+    box-shadow: 3px 0 8px rgba(0,0,0,0.06); /* ظل يفصل العمود عن باقي الجدول */
   }
 }
 
