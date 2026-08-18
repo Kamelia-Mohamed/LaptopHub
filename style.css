@@ -476,25 +476,49 @@ footer{ background:var(--navy-950); color:#8891AA; padding:30px 40px; text-align
 footer b{ color:#fff; }
 
 @media (max-width: 980px){
-  header{ padding:12px 18px; flex-wrap:wrap; }
-  .nav-links{ order:3; width:100%; overflow-x:auto; }
-  .hero{ padding:36px 20px 28px; }
-  .store-container{ padding:20px 18px 90px; flex-direction:column; }
-  .mobile-filter-btn{
-    display:flex; align-items:center; gap:8px;
-    background:var(--surface); border:1.5px solid var(--border); padding:11px 16px;
-    border-radius:11px; font-weight:700; cursor:pointer; margin-bottom:16px; width:100%; justify-content:center;
+  /* كود إظهار البراندات عند الضغط */
+.dropdown-content.show { display: block; }
+
+@media (max-width: 980px){
+  /* تصغير الناف بار */
+  header { padding: 10px 15px; gap: 10px; }
+  .logo { font-size: 18px; }
+  .logo .logo-mark { width: 24px; height: 24px; font-size: 13px; }
+  .nav-links { order: 3; width: 100%; overflow-x: auto; padding-bottom: 5px; gap: 10px; margin-right: 0;}
+  .nav-links a, .dropbtn, .guide-btn { padding: 6px 10px; font-size: 13px; }
+  
+  .hero { padding: 36px 20px 28px; }
+  .store-container { padding: 20px 18px 90px; flex-direction: column; }
+  
+  .mobile-filter-btn {
+    display: flex; align-items: center; gap: 8px;
+    background: var(--surface); border: 1.5px solid var(--border); padding: 11px 16px;
+    border-radius: 11px; font-weight: 700; cursor: pointer; margin-bottom: 16px; width: 100%; justify-content: center;
   }
-  .sidebar-filters{
-    position:fixed; top:0; left:-100%; height:100vh; width:82%; max-width:320px;
-    z-index:500; border-radius:0; transition:left .3s; max-height:100vh;
+  
+  .sidebar-filters {
+    position: fixed; top: 0; left: -100%; height: 100vh; width: 82%; max-width: 320px;
+    z-index: 500; border-radius: 0; transition: left .3s; max-height: 100vh;
   }
-  .sidebar-filters.open{ left:0; box-shadow:var(--shadow-lg); }
-  .sidebar-overlay{ display:none; position:fixed; inset:0; background:rgba(8,11,20,.5); z-index:400; }
-  .sidebar-overlay.open{ display:block; }
-  .guide-grid{ grid-template-columns:1fr; }
-  .details-layout{ flex-direction:column; }
-  .container{ padding:0 18px; }
+  .sidebar-filters.open { left: 0; box-shadow: var(--shadow-lg); }
+  .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(8,11,20,.5); z-index: 400; }
+  .sidebar-overlay.open { display: block; }
+  .guide-grid { grid-template-columns: 1fr; }
+  .details-layout { flex-direction: column; }
+  .container { padding: 0 18px; }
+
+  /* تظبيط جدول المقارنة للموبايل */
+  .comparison-table-wrapper { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .compare-table th, .compare-table td { min-width: 120px; padding: 10px; font-size: 12px; }
+  /* فك تثبيت العمود الأول عشان الجدول ميبقاش فوق بعضه */
+  .compare-table td:first-child, .compare-table th:first-child { position: static; min-width: 90px; }
+}
+
+@media (max-width: 560px){
+  .hero-stats { gap: 22px; }
+  .modal-content { padding: 26px; }
+  .full-modal-inner { padding: 22px; }
+}
 }
 @media (max-width: 560px){
   .hero-stats{ gap:22px; }

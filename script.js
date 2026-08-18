@@ -5,11 +5,11 @@ const BRAND_COLORS = [
 ];
 
 const USETYPE_META = {
-    'Gaming':   { color:'#EF4444', label:'🎮 Gaming',        goodFor:'Great for gaming and demanding apps' },
-    'Creator':  { color:'#8B5CF6', label:'🎨 Creator',       goodFor:'Built for editing, design & creative work' },
-    'Business': { color:'#2563EB', label:'💼 Business',      goodFor:'Solid for office work & business travel' },
-    'Budget':   { color:'#F5A524', label:'💸 Budget',        goodFor:'Affordable pick for basic everyday use' },
-    'Student':  { color:'#14B8A6', label:'🎓 Everyday',      goodFor:'Good all-rounder for study & browsing' }
+    'Gaming':   { color:'#EF4444', label:'Gaming',        goodFor:'Great for gaming and demanding apps' },
+    'Creator':  { color:'#8B5CF6', label:'Creator',       goodFor:'Built for editing, design & creative work' },
+    'Business': { color:'#2563EB', label:'Business',      goodFor:'Solid for office work & business travel' },
+    'Budget':   { color:'#F5A524', label:'Budget',        goodFor:'Affordable pick for basic everyday use' },
+    'Student':  { color:'#14B8A6', label:'Everyday',      goodFor:'Good all-rounder for study & browsing' }
 };
 
 function hashString(str){
@@ -284,7 +284,21 @@ function setupEventListeners() {
             document.querySelector('.store-container').scrollIntoView({behavior: 'smooth'});
         });
     }
-
+// كود تشغيل قائمة البراندات بالضغط للموبايل
+    const dropBtn = document.querySelector('.dropbtn');
+    const dropdownContent = document.getElementById('nav-dropdown');
+    if (dropBtn && dropdownContent) {
+        dropBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            dropdownContent.classList.toggle('show');
+        });
+        // قفل القائمة لو اليوزر داس في أي مكان فاضي
+        document.addEventListener('click', (e) => {
+            if (!e.target.matches('.dropbtn')) {
+                dropdownContent.classList.remove('show');
+            }
+        });
+    }
     const browseBtn = document.getElementById('hero-browse-btn');
     if (browseBtn) {
         browseBtn.addEventListener('click', () => {
