@@ -531,7 +531,17 @@ footer b{ color:#fff; }
   }
   .dropdown-content.show { display: block !important; }
 /* 3. الحل الجذري والنهائي لجدول المقارنة للموبايل */
+  /* إجبار المودال (النافذة المنبثقة) إنها متوسعش بره الشاشة */
+  .modal-content {
+    max-width: 100% !important;
+    overflow-x: hidden !important; 
+    padding: 20px 15px !important; /* تقليل الحواف شوية عشان ندي مساحة للجدول */
+  }
+
+  /* تشغيل السكرول الأفقي للجدول بالقوة */
   .comparison-table-wrapper {
+    display: block !important; /* السطر ده ضروري جداً لتشغيل السكرول */
+    max-width: 100% !important; /* ده اللي بيمنع الجدول يخرج بره الشاشة */
     width: 100% !important;
     overflow-x: auto !important;
     -webkit-overflow-scrolling: touch !important;
@@ -566,6 +576,7 @@ footer b{ color:#fff; }
     border-right: 2px solid #C7CBDE !important; /* خط أتقل يفصل العناوين عن المحتوى */
     font-weight: bold !important;
   }
+  
 
   /* أساسيات الموبايل */
   .hero { padding: 36px 20px 28px !important; }
